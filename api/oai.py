@@ -15,7 +15,6 @@ class OaiAPI:
         return self.answer
 
     def react(self, user_prompt) -> None:
-        # print(prompt)
         final_prompt = f"a fragment snippit for '{user_prompt}'"
 
         print(prompt)
@@ -31,7 +30,6 @@ class OaiAPI:
             stream=True)
 
     def react_without_system_prompt(self, user_prompt) -> None:
-        # print(prompt)
         final_prompt = f"{user_prompt}"
         self.reply = self.remote.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -56,12 +54,3 @@ class OaiAPI:
             if "content" in resp['choices'][0]['delta']:
                 word = resp['choices'][0]['delta']['content']
                 self.answer += word  
-                # print(word, end="", flush=True)
-
-            # print(resp.choices[0].delta.content, end="", flush=False)
-
-
-if __name__ == '__main__':
-    o = OaiAPI()
-    s = o.react("write a circle and a triangle")
-    o.print_reply()

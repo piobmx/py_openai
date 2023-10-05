@@ -1,14 +1,13 @@
 from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
-from api import OaiAPI
+from oai import OaiAPI
 
 app = Flask("oai server")
 CORS(app)
 
 oai = OaiAPI()
 
-
-@app.route("/")
+@app.route("/", methods=["GET"])
 def hello_world():
     return "<p>Hello, World!</p>"
 
@@ -55,6 +54,6 @@ def validateResult(result):
             validated_result = prefix + validated_result + "\n"
     return validated_result
 
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000, debug=True)
+    app.run(host="127.0.0.1", port=3000, debug=True)
+
