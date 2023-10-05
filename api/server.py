@@ -76,7 +76,7 @@ class OaiAPI:
                 self.answer += word  
 
 app = Flask("oai server")
-CORS(app)
+# CORS(app)
 
 oai = OaiAPI()
 
