@@ -74,6 +74,7 @@ class OaiAPI:
             if "content" in resp['choices'][0]['delta']:
                 word = resp['choices'][0]['delta']['content']
                 self.answer += word  
+
 app = Flask("oai server")
 CORS(app)
 
