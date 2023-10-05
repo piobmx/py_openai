@@ -22,16 +22,15 @@ Always include two shader uniforms: uniform vec2 u_resolution and uniform float 
 """
 
 prompt = """
-precision highp float; 
- varying vec2 vUv;
-
 uniform vec2 u_resolution;
 uniform float u_time;
+varying vec2 vUv;
 
 void main(){
  // [The Missing Part]
 }
 Your main TASK is to provide GLSL fragment based on user's description by completing the code above. 
+If you don't think the user prompt make sense, reply a total black image.
 Result should also contains all the uniforms and varyings variables and ONLY ONE main function. 
 Result Must not use textures.
 Result MUST NOT contains any explainations!
