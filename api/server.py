@@ -1,3 +1,5 @@
+import os 
+
 from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 import openai
@@ -25,7 +27,7 @@ Whatever the user tasks, your MOST IMPORTANT PRIORITY is to preseve everything i
 class OaiAPI:
     def __init__(self) -> None:
         self.api_base = "https://openkey.cloud/v1"
-        self.api_key = "sk-vr0WxtlOTSrf54PoKZXo1TtBDiYUU83hrMqOAUbyM5Eezg2q"
+        self.api_key = os.environ['OAI_KEY']
         self.remote = openai
         self.remote.api_base = self.api_base
         self.remote.api_key = self.api_key
@@ -82,7 +84,7 @@ oai = OaiAPI()
 
 @app.route("/", methods=["GET"])
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return f"<p>{oai.api_key}Hello, World!</p>"
 
 
 @app.route("/v1/api", methods=["POST"])
