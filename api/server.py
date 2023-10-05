@@ -84,7 +84,7 @@ oai = OaiAPI()
 
 @app.route("/", methods=["GET"])
 def hello_world():
-    return f"<p>{oai.api_key}Hello, World!</p>"
+    return f"<p>API running</p>"
 
 
 @app.route("/v1/api", methods=["POST"])
