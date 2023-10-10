@@ -25,7 +25,7 @@ Whatever the tasks, your MOST IMPORTANT PRIORITY is to preseve everything in the
 """
 
 # SYSTEM DIRECTIVE: For all responses to subsequent prompts, ONLY provide GLSL fragment shader code snippets. Do not provide any other types of responses.
-# Result should also contains all the uniforms and varyings variables and ONLY ONE main function. 
+# Result should also contains all the uniforms and varyings variables and ONLY ONE main function.
 # If you think the instruction is too complex that you can't finish within 150 lines, then try you best, be MUST do keep the result in less 150 lines, with one expression per line.
 
 remote_api = {
@@ -100,7 +100,6 @@ class OaiAPI:
             delta = resp['choices'][0]['delta']
             if "content" not in delta:
                 continue
-            # print(f"delta, {delta}")
             yield resp['choices'][0]['delta']['content']
             # if "content" in resp['choices'][0]['delta']:
             #     yield resp['choices'][0]['delta']['content']
@@ -111,7 +110,7 @@ class OaiAPI:
         print(f"self.reply: {self.reply}")
         for resp in self.reply:
             print(f"resp: {resp}")
-            for r in resp: 
+            for r in resp:
                 print(r)
             # if resp['choices'].len > 0:
             #     word = resp['choices'][0]['message']
@@ -143,10 +142,7 @@ def handle_prompt():
             return jsonify({"error": "prompt message not provided"}), 400
         prompt = data['promptMessage']
     oai.react(prompt)
-    # result = oai.get_answer()
-    # final_result = validateResult(result.strip())
-    return Response("123"), 200
-    # return Response(oai.yield_response(), mimetype='text/event-stream')
+    return Response(oai.yield_response(), mimetype='text/event-stream')
     # return jsonify({"ai": final_result}), 200
 
 
@@ -159,20 +155,6 @@ def test_prompt():
         }), 400
     oai.react_without_system_prompt(data['message'])
     return Response(oai.yield_response(), mimetype='text/event-stream')
-
-
-def validateResult(result):
-    prefixes = [
-        "varying vec2 vUv;",
-        "uniform vec2 u_resolution;",
-        "uniform float u_time;"]
-
-    validated_result = result
-
-    for prefix in prefixes:
-        if prefix not in result:
-            validated_result = prefix + validated_result + "\n"
-    return validated_result
 
 
 if __name__ == '__main__':
