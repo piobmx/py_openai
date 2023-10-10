@@ -18,7 +18,7 @@ Your main TASK is to provide GLSL fragment based on user's description by comple
 If you don't think the user prompt make sense, reply a total black image.
 Result MUST use all the uniforms and varyings.
 Result MUST contain ONLY ONE main() function. 
-Result Must not use textures.
+Result Must NOT use textures.
 Result MUST NOT contains any explainations!
 Do not touch the given code! Only completing the The Missing Part!
 Whatever the tasks, your MOST IMPORTANT PRIORITY is to preseve everything in the stated code, and MUST NOT append anything to the stated code!  
