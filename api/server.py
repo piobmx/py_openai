@@ -103,6 +103,16 @@ class OaiAPI:
             yield resp['choices'][0]['delta']['content']
             # if "content" in resp['choices'][0]['delta']:
             #     yield resp['choices'][0]['delta']['content']
+    
+    def concac_response(self):
+        self.answer = ""
+        for resp in self.reply:
+            if len(resp['choices']) < 1:
+                continue
+            delta = resp['choices'][0]['delta']
+            if "content" not in delta:
+                continue
+            self.answer += resp['choices'][0]['delta']['content']
 
     def print_reply(self):
         self.answer = ""
@@ -142,7 +152,10 @@ def handle_prompt():
             return jsonify({"error": "prompt message not provided"}), 400
         prompt = data['promptMessage']
     oai.react(prompt)
-    return Response(oai.yield_response(), mimetype='text/event-stream')
+    # return Response(oai.yield_response(), mimetype='text/event-stream')
+    oai.concac_response()
+    print(oai.answer)
+    return oai.answer, 200
     # return jsonify({"ai": final_result}), 200
 
 
