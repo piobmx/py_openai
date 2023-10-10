@@ -25,7 +25,7 @@ Whatever the tasks, your MOST IMPORTANT PRIORITY is to preseve everything in the
 """
 
 # SYSTEM DIRECTIVE: For all responses to subsequent prompts, ONLY provide GLSL fragment shader code snippets. Do not provide any other types of responses.
-# Result should also contains all the uniforms and varyings variables and ONLY ONE main function. 
+# Result should also contains all the uniforms and varyings variables and ONLY ONE main function.
 # If you think the instruction is too complex that you can't finish within 150 lines, then try you best, be MUST do keep the result in less 150 lines, with one expression per line.
 
 remote_api = {
@@ -113,7 +113,7 @@ class OaiAPI:
         print(f"self.reply: {self.reply}")
         for resp in self.reply:
             print(f"resp: {resp}")
-            for r in resp: 
+            for r in resp:
                 print(r)
             # if resp['choices'].len > 0:
             #     word = resp['choices'][0]['message']
@@ -124,8 +124,7 @@ class OaiAPI:
 
 
 app = Flask("oai server")
-CORS(app)
-
+CORS(app, supports_credentials=True)
 oai = OaiAPI()
 
 
@@ -176,5 +175,5 @@ def validateResult(result):
     return validated_result
 
 
-# if __name__ == '__main__':
-#     app.run(host="127.0.0.1", port=3000, debug=True)
+if __name__ == '__main__':
+    app.run(host="127.0.0.1", port=3000, debug=True)
