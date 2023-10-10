@@ -94,8 +94,6 @@ class OaiAPI:
         )
 
     def yield_response(self):
-        # x = (list(self.reply))
-        # print(x)
         for resp in self.reply:
             if len(resp['choices']) < 1:
                 continue
@@ -135,7 +133,6 @@ def hello_world():
 
 
 @app.route("/v1/api", methods=["POST"])
-@cross_origin()
 def handle_prompt():
     if oai.api_type != "azure" and isinstance(request.data, bytes):
         prompt = request.data.decode("utf-8")
