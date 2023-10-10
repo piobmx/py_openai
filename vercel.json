@@ -1,4 +1,9 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/api/server.py" }],
-  "maxDuration": 30
+  "functions": {
+    "api/**": {
+      "memory": 2048,
+      "maxDuration": 30
+    }
+  }
 }
