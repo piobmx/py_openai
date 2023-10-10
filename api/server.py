@@ -145,7 +145,8 @@ def handle_prompt():
     oai.react(prompt)
     # result = oai.get_answer()
     # final_result = validateResult(result.strip())
-    return Response(oai.yield_response(), mimetype='text/event-stream')
+    return Response("123"), 200
+    # return Response(oai.yield_response(), mimetype='text/event-stream')
     # return jsonify({"ai": final_result}), 200
 
 
