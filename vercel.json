@@ -1,9 +1,3 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/api/server.py" }],
-  "functions": {
-    "api/**": {
-      "memory": 2048,
-      "maxDuration": 30
-    }
-  }
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/server.py" }]
 }
