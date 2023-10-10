@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, request, jsonify, Response
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import openai
 
 prompt = """
@@ -124,8 +124,8 @@ class OaiAPI:
 
 
 app = Flask("oai server")
-allowed_origins=["http://localhost:5173", "https://oai-shader.vercel.app"]
-CORS(app, origins=allowed_origins)
+# allowed_origins=["http://localhost:5173", "https://oai-shader.vercel.app"]
+CORS(app)
 oai = OaiAPI()
 
 
@@ -135,6 +135,7 @@ def hello_world():
 
 
 @app.route("/v1/api", methods=["POST"])
+@cross_origin()
 def handle_prompt():
     if oai.api_type != "azure" and isinstance(request.data, bytes):
         prompt = request.data.decode("utf-8")
